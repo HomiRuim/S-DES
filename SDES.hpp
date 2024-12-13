@@ -10,3 +10,5 @@ int right_side(int key);
 int LS_1(int half_key);
 
 int LS_2(int half_key);
+
+int merge_sides(int left, int right);

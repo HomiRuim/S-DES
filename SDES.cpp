@@ -29,4 +29,8 @@ int LS_2(int some_side){
 	return (some_side & 24) >> 3 | ((some_side << 2) & 31);
 }
 
+int merge_sides(int left, int right){
+	return 0;
+}
+
 
