@@ -8,6 +8,9 @@ using namespace std;
 
 TEST_CASE("Testa SDES", "[single-file]" ) {
 	int teste0 = 642;
-	REQUIRE(P10(teste0) == 524 );
+	CHECK(P10(teste0) == 524 );
 
+	CHECK(left_side(teste0) == 20);
+
+	CHECK(right_side(teste0) == 2);
 }

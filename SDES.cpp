@@ -13,6 +13,14 @@ int P10(int key){
 	return permuted_key;
 }
 
+int left_side(int permuted_key){
+	return 0;
+
+}
+
+int right_side(int permuted_key){
+	return 0;
+}
 
 
 
