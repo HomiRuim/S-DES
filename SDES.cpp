@@ -14,12 +14,12 @@ int P10(int key){
 }
 
 int left_side(int permuted_key){
-	return 0;
+	return (permuted_key & 992) >> 5;
 
 }
 
 int right_side(int permuted_key){
-	return 0;
+	return permuted_key & 31;
 }
 
 
