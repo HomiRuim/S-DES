@@ -19,4 +19,6 @@ TEST_CASE("Testa SDES", "[single-file]" ) {
 	CHECK(LS_2(16) == 2);
 
 	CHECK(merge_sides(20, 2) == 642);
+
+	CHECK(P8(56) == 164);
 }
