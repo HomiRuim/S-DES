@@ -14,3 +14,5 @@ int LS_2(int half_key);
 int merge_sides(int left, int right);
 
 int P8(int key);
+
+pair<int,int> KeyScheduling(int key);

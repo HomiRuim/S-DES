@@ -21,4 +21,11 @@ TEST_CASE("Testa SDES", "[single-file]" ) {
 	CHECK(merge_sides(20, 2) == 642);
 
 	CHECK(P8(56) == 164);
+
+	CHECK(P8(131) == 67);
+
+	CHECK(KeyScheduling(642).first == 164);
+
+	CHECK(KeyScheduling(642).second == 35);
+
 }

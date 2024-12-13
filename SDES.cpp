@@ -14,7 +14,7 @@ int P10(int key){
 }
 
 int P8(int key){
-	vector<int> ordem = {4, 1, 5, 2, 6, 3, 8, 7};
+	vector<int> ordem = {4, 7, 3, 6, 2, 5, 0, 1};
 	int permuted_key = 0;
 	for (int i = 0; i < 8; i++) {
 		int verifica_bit = (key >> ordem[i]) & 1;
@@ -41,6 +41,10 @@ int LS_2(int some_side){
 
 int merge_sides(int left, int right){
 	return (left << 5) | right;
+}
+
+pair<int, int> KeyScheduling(int key){
+	return make_pair(0, 0);
 }
 
 
