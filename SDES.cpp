@@ -30,7 +30,7 @@ int LS_2(int some_side){
 }
 
 int merge_sides(int left, int right){
-	return 0;
+	return (left << 5) | right;
 }
 
 
