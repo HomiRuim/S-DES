@@ -22,17 +22,11 @@ int right_side(int permuted_key){
 }
 
 int LS_1(int some_side){
-	int last_bit = some_side & 16;
-	last_bit = last_bit >> 4;
-	some_side = (some_side << 1) & 31;
-	return last_bit | some_side;
+	return (some_side & 16) >> 4 | ((some_side << 1) & 31);
 }
 
 int LS_2(int some_side){
-	int last_two_bits = some_side & 24;
-	last_two_bits = last_two_bits >> 3;
-	some_side = (some_side << 2) & 31;
-	return last_two_bits | some_side;
+	return (some_side & 24) >> 3 | ((some_side << 2) & 31);
 }
 
 
