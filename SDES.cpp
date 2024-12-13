@@ -22,5 +22,12 @@ int right_side(int permuted_key){
 	return permuted_key & 31;
 }
 
+int LS_1(int some_side){
+	return 0;
+}
+
+int LS_2(int some_side){
+	return 0;
+}
 
 

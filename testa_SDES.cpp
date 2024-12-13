@@ -7,10 +7,14 @@ using namespace std;
 #include "catch.hpp"
 
 TEST_CASE("Testa SDES", "[single-file]" ) {
-	int teste0 = 642;
-	CHECK(P10(teste0) == 524 );
+	// 642 == 1010000010
+	CHECK(P10(642) == 524 );
 
-	CHECK(left_side(teste0) == 20);
+	CHECK(left_side(642) == 20);
 
-	CHECK(right_side(teste0) == 2);
+	CHECK(right_side(642) == 2);
+
+	CHECK(LS_1(16) == 1);
+
+	CHECK(LS_2(16) == 2);
 }
