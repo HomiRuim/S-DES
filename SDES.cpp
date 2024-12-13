@@ -44,7 +44,13 @@ int merge_sides(int left, int right){
 }
 
 pair<int, int> KeyScheduling(int key){
-	return make_pair(0, 0);
+	int K1, K2;
+	int permuted_key = P10(key);
+	int parte_esquerda = LS_1(left_side(permuted_key));
+	int parte_direita = LS_1(right_side(permuted_key));
+	K1 = P8(merge_sides(parte_esquerda, parte_direita));
+	K2 = P8(merge_sides(LS_2(parte_esquerda), LS_2(parte_direita)));
+	return make_pair(K1, K2);
 }
 
 

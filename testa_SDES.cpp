@@ -26,6 +26,6 @@ TEST_CASE("Testa SDES", "[single-file]" ) {
 
 	CHECK(KeyScheduling(642).first == 164);
 
-	CHECK(KeyScheduling(642).second == 35);
+	CHECK(KeyScheduling(642).second == 67);
 
 }
