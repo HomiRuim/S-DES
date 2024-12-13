@@ -7,7 +7,7 @@ using namespace std;
 #include "catch.hpp"
 
 TEST_CASE("Testa SDES", "[single-file]" ) {
-	unsigned int teste0; teste0 = 642;
+	int teste0 = 642;
 	REQUIRE(P10(teste0) == 524 );
 
 }
