@@ -8,13 +8,19 @@ int P10(int key){
 	int permuted_key = 0;
 	for (int i = 0; i < 10; i++) {
 		int verifica_bit = (key >> ordem[i]) & 1;
-		permuted_key = permuted_key | (verifica_bit << (9 - i));
+		permuted_key |=  (verifica_bit << (9 - i));
 	}
 	return permuted_key;
 }
 
 int P8(int key){
-	return 0;
+	vector<int> ordem = {4, 1, 5, 2, 6, 3, 8, 7};
+	int permuted_key = 0;
+	for (int i = 0; i < 8; i++) {
+		int verifica_bit = (key >> ordem[i]) & 1;
+		permuted_key |=  (verifica_bit << (7 - i));
+	}
+	return permuted_key;
 }
 
 int left_side(int permuted_key){
