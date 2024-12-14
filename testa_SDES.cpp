@@ -46,5 +46,9 @@ TEST_CASE("Testa SDES", "[single-file]" ) {
 
 	CHECK(FK(1, 1, 164) == 225);
 
-	CHECK(SW(14, 1) == 30);
+	CHECK(SW(14, 1) == 30); // fim da fk1
+
+	CHECK(FK(1, 14, 67) ==  14);
+
+	CHECK(IPminus(14) == 25);
 }
