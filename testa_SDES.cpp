@@ -27,6 +27,8 @@ TEST_CASE("Testa SDES", "[single-file]" ) {
 	CHECK(KeyScheduling(642).first == 164);
 
 	CHECK(KeyScheduling(642).second == 67);
-
+	// teste de criptografia começa aqui
 	CHECK(IP(642) == 17);
+
+	CHECK(EP(1) == 130);
 }

@@ -66,3 +66,13 @@ int IP(int plaintext) {
 	int resultIP = permuted;
     return resultIP;
 }
+
+int EP(int right) {
+    vector<int> ordem = {3, 0, 1, 2, 1, 2, 3, 0};
+    int expanded = 0;
+    for (int i = 0; i < 8; i++) {
+        int bit = (right >> (3 - ordem[i])) & 1;
+        expanded |= (bit << (7 - i));
+    }
+    return expanded;
+}

@@ -18,3 +18,5 @@ int P8(int key);
 pair<int,int> KeyScheduling(int key);
 
 int IP(int plaintext);
+
+int EP(int right);
