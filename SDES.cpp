@@ -53,4 +53,16 @@ pair<int, int> KeyScheduling(int key){
 	return make_pair(K1, K2);
 }
 
+// fim da criação da chaves
+// inicio da criptografia
 
+int IP(int plaintext) {
+    vector<int> ordem = {1, 5, 2, 0, 3, 7, 4, 6};
+    int permuted = 0;
+    for (int i = 0; i < 8; i++) {
+        int bit = (plaintext >> (7 - ordem[i])) & 1;
+        permuted |= (bit << (7 - i));
+    }
+	int resultIP = permuted;
+    return resultIP;
+}

@@ -16,3 +16,5 @@ int merge_sides(int left, int right);
 int P8(int key);
 
 pair<int,int> KeyScheduling(int key);
+
+int IP(int plaintext);

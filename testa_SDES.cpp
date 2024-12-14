@@ -28,4 +28,5 @@ TEST_CASE("Testa SDES", "[single-file]" ) {
 
 	CHECK(KeyScheduling(642).second == 67);
 
+	CHECK(IP(642) == 17);
 }
