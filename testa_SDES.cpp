@@ -18,7 +18,7 @@ TEST_CASE("Testa SDES", "[single-file]" ) {
 
 	CHECK(LS_2(16) == 2);
 
-	CHECK(merge_sides(20, 2) == 642);
+	CHECK(merge_sides10bits(20, 2) == 642);
 
 	CHECK(P8(56) == 164);
 
@@ -40,5 +40,7 @@ TEST_CASE("Testa SDES", "[single-file]" ) {
 
 	CHECK(P4(3, 3) == 15);
 
-	CHECK(SW(15) == 15);
+	CHECK(XOR(1, 15) == 14);
+
+	CHECK(merge_sides8bits(14, 1) == 225);
 }

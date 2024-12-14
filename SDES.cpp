@@ -39,7 +39,7 @@ int LS_2(int some_side){
 	return (some_side & 24) >> 3 | ((some_side << 2) & 31);
 }
 
-int merge_sides(int left, int right){
+int merge_sides10bits(int left, int right){
 	return (left << 5) | right;
 }
 
@@ -48,8 +48,8 @@ pair<int, int> KeyScheduling(int key){
 	int permuted_key = P10(key);
 	int parte_esquerda = LS_1(left_side(permuted_key));
 	int parte_direita = LS_1(right_side(permuted_key));
-	K1 = P8(merge_sides(parte_esquerda, parte_direita));
-	K2 = P8(merge_sides(LS_2(parte_esquerda), LS_2(parte_direita)));
+	K1 = P8(merge_sides10bits(parte_esquerda, parte_direita));
+	K2 = P8(merge_sides10bits(LS_2(parte_esquerda), LS_2(parte_direita)));
 	return make_pair(K1, K2);
 }
 
@@ -117,4 +117,8 @@ int P4(int left, int right) {
         permuted |= (bit << (3 - i));
     }
     return permuted;
+}
+
+int merge_sides8bits(int left, int right){
+	return (left << 4) | right;
 }
