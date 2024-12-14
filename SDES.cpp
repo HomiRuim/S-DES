@@ -149,3 +149,18 @@ int IPminus(int textocifrado) {
 	int resultIPminus = permuted;
     return resultIPminus;
 }
+
+int Encryption(int plaintext, int key){
+	pair<int, int> keys = KeyScheduling(642);
+	int permuted_plaintext = IP(plaintext);
+	int left = left_side(permuted_plaintext);
+	int right = right_side(permuted_plaintext);
+	int FK_1 = FK(left, right, keys.first);
+	left = left_side(FK_1);
+	right = right_side(FK_1);
+	FK_1 = SW(left, right);
+	left = left_side(FK_1);
+	right = right_side(FK_1);
+	int FK_2 = FK(left , right, keys.second);
+	return IPminus(FK_2);
+}

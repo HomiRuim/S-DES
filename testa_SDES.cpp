@@ -51,4 +51,6 @@ TEST_CASE("Testa SDES", "[single-file]" ) {
 	CHECK(FK(1, 14, 67) ==  14);
 
 	CHECK(IPminus(14) == 25);
+
+	CHECK(Encryption(642, 642) == 25);
 }
