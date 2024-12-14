@@ -23,12 +23,20 @@ int P8(int key){
 	return permuted_key;
 }
 
-int left_side(int permuted_key){
+int left_side10bits(int permuted_key){
 	return (permuted_key & 992) >> 5;
 }
 
-int right_side(int permuted_key){
+int left_side8bits(int permuted_key){
+	return (permuted_key & 240) >> 4;
+}
+
+int right_side10bits(int permuted_key){
 	return permuted_key & 31;
+}
+
+int right_side8bits(int permuted_key){
+	return permuted_key & 15;
 }
 
 int LS_1(int some_side){
@@ -46,8 +54,8 @@ int merge_sides10bits(int left, int right){
 pair<int, int> KeyScheduling(int key){
 	int K1, K2;
 	int permuted_key = P10(key);
-	int parte_esquerda = LS_1(left_side(permuted_key));
-	int parte_direita = LS_1(right_side(permuted_key));
+	int parte_esquerda = LS_1(left_side10bits(permuted_key));
+	int parte_direita = LS_1(right_side10bits(permuted_key));
 	K1 = P8(merge_sides10bits(parte_esquerda, parte_direita));
 	K2 = P8(merge_sides10bits(LS_2(parte_esquerda), LS_2(parte_direita)));
 	return make_pair(K1, K2);
@@ -153,14 +161,14 @@ int IPminus(int textocifrado) {
 int Encryption(int plaintext, int key){
 	pair<int, int> keys = KeyScheduling(642);
 	int permuted_plaintext = IP(plaintext);
-	int left = left_side(permuted_plaintext);
-	int right = right_side(permuted_plaintext);
+	int left = left_side8bits(permuted_plaintext);
+	int right = right_side8bits(permuted_plaintext);;
 	int FK_1 = FK(left, right, keys.first);
-	left = left_side(FK_1);
-	right = right_side(FK_1);
+	left = left_side8bits(FK_1);
+	right = right_side8bits(FK_1);
 	FK_1 = SW(left, right);
-	left = left_side(FK_1);
-	right = right_side(FK_1);
+	left = left_side8bits(FK_1);
+	right = right_side8bits(FK_1);
 	int FK_2 = FK(left , right, keys.second);
 	return IPminus(FK_2);
 }

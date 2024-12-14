@@ -10,9 +10,9 @@ TEST_CASE("Testa SDES", "[single-file]" ) {
 	// 642 == 1010000010
 	CHECK(P10(642) == 524 );
 
-	CHECK(left_side(642) == 20);
+	CHECK(left_side10bits(642) == 20);
 
-	CHECK(right_side(642) == 2);
+	CHECK(right_side10bits(642) == 2);
 
 	CHECK(LS_1(16) == 1);
 
