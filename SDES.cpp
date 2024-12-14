@@ -135,5 +135,6 @@ int FK(int left, int right, int subkey){
 }
 
 int SW(int right, int left){
-	return 0;
+	left = left << 4;
+	return right | left;
 }
