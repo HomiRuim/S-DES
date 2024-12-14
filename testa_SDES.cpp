@@ -44,5 +44,5 @@ TEST_CASE("Testa SDES", "[single-file]" ) {
 
 	CHECK(merge_sides8bits(14, 1) == 225);
 
-	CHECK(FK(14, 1, 164) == 225);
+	CHECK(FK(1, 1, 164) == 225);
 }

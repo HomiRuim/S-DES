@@ -124,5 +124,12 @@ int merge_sides8bits(int left, int right){
 }
 
 int FK(int left, int right, int subkey){
-	return 0;
+	int right_changed = EP(right);
+	right_changed = XOR(right_changed, subkey);
+	int S0, S1;
+	S0 = S_BOX0(right_changed);
+	S1 = S_BOX1(right_changed);
+	right_changed = P4(S0, S1);
+	right_changed = XOR(right_changed, left);
+	return merge_sides8bits(right_changed, right);
 }
