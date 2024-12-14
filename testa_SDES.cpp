@@ -28,29 +28,31 @@ TEST_CASE("Testa SDES", "[single-file]" ) {
 
 	CHECK(KeyScheduling(642).second == 67);
 	// teste de criptografia começa aqui
-	CHECK(IP(642) == 17);
+	CHECK(IP(215) == 221);
 
-	CHECK(EP(1) == 130);
+	CHECK(EP(13) == 235);
 
-	CHECK(XOR(130, 164) == 38); //xor com a EP e chave K1
+	CHECK(XOR(235, 164) == 79);
 
-	CHECK(S_BOX0(38) == 3);
+	CHECK(S_BOX0(4) == 3);
 
-	CHECK(S_BOX1(38) == 3);
+	CHECK(S_BOX1(15) == 3);
 
-	CHECK(P4(3, 3) == 15);
+	CHECK(P4(15) == 15);
 
-	CHECK(XOR(1, 15) == 14);
+	CHECK(XOR(13, 15) == 2);
 
-	CHECK(merge_sides8bits(14, 1) == 225);
+	CHECK(merge_sides8bits(2, 13) == 45);
 
-	CHECK(FK(1, 1, 164) == 225);
+	CHECK(FK(13, 13, 164) == 45);
 
-	CHECK(SW(14, 1) == 30); // fim da fk1
+	CHECK(SW(2, 13) == 210);
 
-	CHECK(FK(1, 14, 67) ==  14);
+	CHECK(FK(13, 2, 67) == 50);
 
-	CHECK(IPminus(14) == 25);
+	CHECK(IP_1(50) == 168);
 
-	CHECK(Encryption(642, 642) == 25);
+	CHECK(Encryption(215, 642) == 168);
+
+	CHECK(Decryption(168, 642) == 215);
 }

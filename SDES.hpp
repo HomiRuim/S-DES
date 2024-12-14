@@ -31,14 +31,18 @@ int S_BOX0(int resultxor);
 
 int S_BOX1(int resultxor);
 
-int P4(int left, int right);
+int P4(int right);
 
 int SW(int right, int left);
 
 int merge_sides8bits(int left, int right);
 
-int FK(int left, int right, int subkey);
+int merge_sides4bits(int left, int right);
 
-int IPminus(int textocifrado);
+int FK(int right, int left, int subkey);
+
+int IP_1(int plaintext);
 
 int Encryption(int plaintext, int key);
+
+int Decryption(int cyphertext, int key);

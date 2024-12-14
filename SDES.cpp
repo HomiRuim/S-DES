@@ -51,6 +51,14 @@ int merge_sides10bits(int left, int right){
 	return (left << 5) | right;
 }
 
+int merge_sides8bits(int left, int right){
+	return (left << 4) | right;
+}
+
+int merge_sides4bits(int left, int right){
+	return (left << 2) | right;
+}
+
 pair<int, int> KeyScheduling(int key){
 	int K1, K2;
 	int permuted_key = P10(key);
@@ -65,24 +73,33 @@ pair<int, int> KeyScheduling(int key){
 // inicio da criptografia
 
 int IP(int plaintext) {
-    vector<int> ordem = {1, 5, 2, 0, 3, 7, 4, 6};
-    int permuted = 0;
-    for (int i = 0; i < 8; i++) {
-        int bit = (plaintext >> (7 - ordem[i])) & 1;
-        permuted |= (bit << (7 - i));
-    }
-	int resultIP = permuted;
-    return resultIP;
+    vector<int> ordem = {6, 2, 5, 7, 4, 0, 3, 1};
+	int permuted_key = 0;
+	for (int i = 0; i < 8; i++) {
+		int verifica_bit = (plaintext >> ordem[i]) & 1;
+		permuted_key |=  (verifica_bit << (7 - i));
+	}
+	return permuted_key;
+}
+
+int IP_1(int plaintext) {
+	vector<int> ordem = {4, 7, 5, 3, 1, 6, 0, 2};
+	int permuted_key = 0;
+	for (int i = 0; i < 8; i++) {
+		int verifica_bit = (plaintext >> ordem[i]) & 1;
+		permuted_key |=  (verifica_bit << (7 - i));
+	}
+	return permuted_key;
 }
 
 int EP(int right) {
-    vector<int> ordem = {3, 0, 1, 2, 1, 2, 3, 0};
-    int expanded = 0;
-    for (int i = 0; i < 8; i++) {
-        int bit = (right >> (3 - ordem[i])) & 1;
-        expanded |= (bit << (7 - i));
-    }
-    return expanded;
+    vector<int> ordem = {0, 3, 2, 1, 2, 1, 0, 3};
+	int permuted_key = 0;
+	for (int i = 0; i < 8; i++) {
+		int verifica_bit = (right >> ordem[i]) & 1;
+		permuted_key |=  (verifica_bit << (7 - i));
+	}
+	return permuted_key;
 }
 
 int XOR(int resultEP, int K) {
@@ -93,15 +110,17 @@ int XOR(int resultEP, int K) {
 int S_BOX0(int resultxor) {
 	vector<vector<int>> S0 = {
 		{1, 0, 3, 2},
-        {3, 2, 1, 0},
-        {0, 2, 1, 3},
-        {3, 1, 3, 2}
+		{3, 2, 1, 0},
+		{0, 2, 1, 3},
+		{3, 1, 3, 2}
 	};
-	int left_xor = (resultxor >> 4) & 0xF;
-	int linha = ((left_xor & 8) >> 2) | (left_xor & 1);
-	int coluna = (left_xor & 6) >> 1;
-	return S0[coluna][linha];
+	// Extrair linha e coluna
+	int linha = ((resultxor & 0b1000) >> 3) | (resultxor & 0b0001); // Bits 1 e 4
+	int coluna = (resultxor & 0b0110) >> 1;                        // Bits 2 e 3
+
+	return S0[linha][coluna];
 }
+
 
 int S_BOX1(int resultxor) {
     vector<vector<int>> S1 = {
@@ -110,36 +129,21 @@ int S_BOX1(int resultxor) {
         {3, 0, 1, 0},
         {2, 1, 0, 3}
     };
-    int right_xor = resultxor & 0xF;
-    int linha = ((right_xor & 8) >> 2) | (right_xor & 1);
-    int coluna = (right_xor & 6) >> 1;
-    return S1[linha][coluna];
+	// Extrair linha e coluna
+	int linha = ((resultxor & 0b1000) >> 3) | (resultxor & 0b0001); // Bits 1 e 4
+	int coluna = (resultxor & 0b0110) >> 1;                        // Bits 2 e 3
+
+	return S1[linha][coluna];
 }
 
-int P4(int left, int right) {
-	int input = (left << 2) | right;
-	vector<int> ordem = {1, 3, 2, 0};
-	int permuted = 0;
-    for (int i = 0; i < 4; i++) {
-        int bit = (input >> (3 - ordem[i])) & 1;
-        permuted |= (bit << (3 - i));
-    }
-    return permuted;
-}
-
-int merge_sides8bits(int left, int right){
-	return (left << 4) | right;
-}
-
-int FK(int left, int right, int subkey){
-	int right_changed = EP(right);
-	right_changed = XOR(right_changed, subkey);
-	int S0, S1;
-	S0 = S_BOX0(right_changed);
-	S1 = S_BOX1(right_changed);
-	right_changed = P4(S0, S1);
-	right_changed = XOR(right_changed, left);
-	return merge_sides8bits(right_changed, right);
+int P4(int right) {
+	vector<int> ordem = {2, 0, 1, 3};
+	int permuted_key = 0;
+	for (int i = 0; i < 4; i++) {
+		int verifica_bit = (right >> ordem[i]) & 1;
+		permuted_key |=  (verifica_bit << (3 - i));
+	}
+	return permuted_key;
 }
 
 int SW(int right, int left){
@@ -147,28 +151,39 @@ int SW(int right, int left){
 	return right | left;
 }
 
-int IPminus(int textocifrado) {
-    vector<int> ordem = {3, 0, 2, 4, 6, 1, 7, 5};
-    int permuted = 0;
-    for (int i = 0; i < 8; i++) {
-        int bit = (textocifrado >> (7 - ordem[i])) & 1;
-        permuted |= (bit << (7 - i));
-    }
-	int resultIPminus = permuted;
-    return resultIPminus;
+int FK(int left, int right, int subkey){
+	int extended_right = EP(right);
+	extended_right = XOR(extended_right, subkey);
+	int s0 = S_BOX0(left_side8bits(extended_right));
+	int s1 = S_BOX1(right_side8bits(extended_right));
+	int merged = merge_sides4bits(s0, s1);
+	merged = P4(merged);
+	merged = XOR(merged, left);
+	return merge_sides8bits(merged, right);
 }
 
 int Encryption(int plaintext, int key){
-	pair<int, int> keys = KeyScheduling(642);
+	pair<int, int> keys = KeyScheduling(key);
 	int permuted_plaintext = IP(plaintext);
 	int left = left_side8bits(permuted_plaintext);
-	int right = right_side8bits(permuted_plaintext);;
+	int right = right_side8bits(permuted_plaintext);
 	int FK_1 = FK(left, right, keys.first);
-	left = left_side8bits(FK_1);
-	right = right_side8bits(FK_1);
-	FK_1 = SW(left, right);
-	left = left_side8bits(FK_1);
-	right = right_side8bits(FK_1);
-	int FK_2 = FK(left , right, keys.second);
-	return IPminus(FK_2);
+	left = right_side8bits(FK_1);
+	right = left_side8bits(FK_1);
+	int FK_2 = FK(left, right, keys.second);
+	return IP_1(FK_2);
 }
+
+int Decryption(int plaintext, int key){
+	pair<int, int> keys = KeyScheduling(key);
+	int permuted_plaintext = IP(plaintext);
+	int left = left_side8bits(permuted_plaintext);
+	int right = right_side8bits(permuted_plaintext);
+	int FK_1 = FK(left, right, keys.second);
+	left = right_side8bits(FK_1);
+	right = left_side8bits(FK_1);
+	int FK_2 = FK(left, right, keys.first);
+	return IP_1(FK_2);
+}
+
+
