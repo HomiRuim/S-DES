@@ -28,3 +28,5 @@ int S_BOX0(int resultxor);
 int S_BOX1(int resultxor);
 
 int P4(int left, int right);
+
+int SW(int input);
