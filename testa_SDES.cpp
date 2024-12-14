@@ -37,4 +37,6 @@ TEST_CASE("Testa SDES", "[single-file]" ) {
 	CHECK(S_BOX0(38) == 3);
 
 	CHECK(S_BOX1(38) == 3);
+
+	CHECK(P4(3, 3) == 15);
 }

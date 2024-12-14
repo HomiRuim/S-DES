@@ -107,3 +107,14 @@ int S_BOX1(int resultxor) {
     int coluna = (right_xor & 6) >> 1;
     return S1[linha][coluna];
 }
+
+int P4(int left, int right) {
+	int input = (left << 2) | right;
+	vector<int> ordem = {1, 3, 2, 0};
+	int permuted = 0;
+    for (int i = 0; i < 4; i++) {
+        int bit = (input >> (3 - ordem[i])) & 1;
+        permuted |= (bit << (3 - i));
+    }
+    return permuted;
+}
