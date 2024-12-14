@@ -1,1 +1,1 @@
-coverage/*.o: SDES.cpp SDES.hpp
+coverage/*.o: Main.cpp SDES.hpp SDES.cpp

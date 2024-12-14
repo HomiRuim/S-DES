@@ -7,12 +7,12 @@ using namespace std;
 #include "catch.hpp"
 
 TEST_CASE("Testa SDES", "[single-file]" ) {
-	// 642 == 1010000010
+
 	CHECK(P10(642) == 524 );
 
-	CHECK(left_side10bits(642) == 20);
+	CHECK(left_side_10bits(642) == 20);
 
-	CHECK(right_side10bits(642) == 2);
+	CHECK(right_side_10bits(642) == 2);
 
 	CHECK(LS_1(16) == 1);
 
@@ -27,7 +27,7 @@ TEST_CASE("Testa SDES", "[single-file]" ) {
 	CHECK(KeyScheduling(642).first == 164);
 
 	CHECK(KeyScheduling(642).second == 67);
-	// teste de criptografia começa aqui
+
 	CHECK(IP(215) == 221);
 
 	CHECK(EP(13) == 235);
