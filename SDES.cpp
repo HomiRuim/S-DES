@@ -138,3 +138,14 @@ int SW(int right, int left){
 	left = left << 4;
 	return right | left;
 }
+
+int IPminus(int textocifrado) {
+    vector<int> ordem = {3, 0, 2, 4, 6, 1, 7, 5};
+    int permuted = 0;
+    for (int i = 0; i < 8; i++) {
+        int bit = (textocifrado >> (7 - ordem[i])) & 1;
+        permuted |= (bit << (7 - i));
+    }
+	int resultIPminus = permuted;
+    return resultIPminus;
+}

@@ -34,3 +34,5 @@ int SW(int right, int left);
 int merge_sides8bits(int left, int right);
 
 int FK(int left, int right, int subkey);
+
+int IPminus(int textocifrado);
