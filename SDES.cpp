@@ -122,3 +122,7 @@ int P4(int left, int right) {
 int merge_sides8bits(int left, int right){
 	return (left << 4) | right;
 }
+
+int FK(int left, int right, int subkey){
+	return 0;
+}

@@ -32,3 +32,5 @@ int P4(int left, int right);
 int SW(int input);
 
 int merge_sides8bits(int left, int right);
+
+int FK(int left, int right, int subkey);
