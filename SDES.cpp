@@ -81,3 +81,29 @@ int XOR(int resultEP, int K) {
 	int x = resultEP ^ K;
 	return x;
 }
+
+int S_BOX0(int resultxor) {
+	vector<vector<int>> S0 = {
+		{1, 0, 3, 2},
+        {3, 2, 1, 0},
+        {0, 2, 1, 3},
+        {3, 1, 3, 2}
+	};
+	int left_xor = (resultxor >> 4) & 0xF;
+	int linha = ((left_xor & 8) >> 2) | (left_xor & 1);
+	int coluna = (left_xor & 6) >> 1;
+	return S0[coluna][linha];
+}
+
+int S_BOX1(int resultxor) {
+    vector<vector<int>> S1 = {
+        {0, 1, 2, 3},
+        {2, 0, 1, 3},
+        {3, 0, 1, 0},
+        {2, 1, 0, 3}
+    };
+    int right_xor = resultxor & 0xF;
+    int linha = ((right_xor & 8) >> 2) | (right_xor & 1);
+    int coluna = (right_xor & 6) >> 1;
+    return S1[linha][coluna];
+}

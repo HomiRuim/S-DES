@@ -33,4 +33,8 @@ TEST_CASE("Testa SDES", "[single-file]" ) {
 	CHECK(EP(1) == 130);
 
 	CHECK(XOR(130, 164) == 38); //xor com a EP e chave K1
+
+	CHECK(S_BOX0(38) == 3);
+
+	CHECK(S_BOX1(38) == 3);
 }
