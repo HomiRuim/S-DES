@@ -76,3 +76,8 @@ int EP(int right) {
     }
     return expanded;
 }
+
+int XOR(int resultEP, int K) {
+	int x = resultEP ^ K;
+	return x;
+}

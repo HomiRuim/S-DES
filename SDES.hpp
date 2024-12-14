@@ -20,3 +20,9 @@ pair<int,int> KeyScheduling(int key);
 int IP(int plaintext);
 
 int EP(int right);
+
+int XOR(int resultEP, int K);
+
+//int S_BOX0(int resultxor);
+
+//int S_BOX1(int resultxor);
