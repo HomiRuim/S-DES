@@ -29,7 +29,7 @@ int S_BOX1(int resultxor);
 
 int P4(int left, int right);
 
-int SW(int right, left);
+int SW(int right, int left);
 
 int merge_sides8bits(int left, int right);
 

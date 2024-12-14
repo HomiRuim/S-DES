@@ -133,3 +133,7 @@ int FK(int left, int right, int subkey){
 	right_changed = XOR(right_changed, left);
 	return merge_sides8bits(right_changed, right);
 }
+
+int SW(int right, int left){
+	return 0;
+}
