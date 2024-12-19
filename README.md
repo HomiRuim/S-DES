@@ -3,7 +3,8 @@ Trabalho 1 de Segurança Computacional Universidade de Brasília, 2024/2, Profa.
 
 alunos: ERICK HIDEKI TAIRA 222011525, DAVI DE ARAUJO GARCEZ BUENO 211060586.
 
-link github: https://github.com/BlueyHeeler/S-DES 
+link github: https://github.com/BlueyHeeler/S-DES
+             https://github.com/HomiRuim/S-DES
 
 No trabalho realizamos a implementação do SDES(Simplified DES) proposto por William Stallings "Cryptography and Network Security, Fifth Edition". 
 
